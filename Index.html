@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Yêu Em Lung Linh</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    .heart, .text, .star {
+      position: absolute;
+      animation: fall linear infinite;
+    }
+
+    .heart {
+      color: #ff3366;
+      font-size: 18px;
+      font-weight: bold;
+      opacity: 0.9;
+      text-shadow: 0 0 6px #ff3366, 0 0 12px #ff6699;
+    }
+
+    .text {
+      font-size: 20px;
+      color: #ff69b4;
+      font-weight: bold;
+      text-shadow: 0 0 5px hotpink, 0 0 10px hotpink;
+    }
+
+    .star {
+      color: #ffffff;
+      font-size: 8px;
+      opacity: 0.8;
+      text-shadow: 0 0 4px white, 0 0 8px #88f;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const layers = 6; // 6 lớp
+    const heartCount = 100; // số trái tim nhỏ lung linh
+    const textCount = 10; // 10 chữ "yêu em"
+    const extraTextCount = 10; // 10 chữ "em thích chị"
+    const starCount = 80; // số ngôi sao bé lung linh
+
+    function createFallingElement(content, className, duration, delay, size = "16px") {
+      const el = document.createElement("div");
+      el.className = className;
+      el.innerText = content;
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.animationDuration = duration + "s";
+      el.style.animationDelay = delay + "s";
+      el.style.fontSize = size;
+      document.body.appendChild(el);
+    }
+
+    for (let l = 0; l < layers; l++) {
+      for (let i = 0; i < heartCount / layers; i++) {
+        const delay = Math.random() * 5;
+        const duration = 3 + Math.random() * 5;
+        createFallingElement("♥", "heart", duration, delay, `${14 + Math.random() * 10}px`);
+      }
+    }
+
+    for (let i = 0; i < textCount; i++) {
+      const delay = Math.random() * 5;
+      const duration = 4 + Math.random() * 4;
+      createFallingElement("yêu em", "text", duration, delay);
+    }
+
+    for (let i = 0; i < extraTextCount; i++) {
+      const delay = Math.random() * 5;
+      const duration = 4 + Math.random() * 4;
+      createFallingElement("em thích chị", "text", duration, delay);
+    }
+
+    for (let i = 0; i < starCount; i++) {
+      const delay = Math.random() * 6;
+      const duration = 3 + Math.random() * 6;
+      createFallingElement("✦", "star", duration, delay);
+    }
+  </script>
+</body>
+</html>
